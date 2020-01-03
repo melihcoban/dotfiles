@@ -1,0 +1,7 @@
+set selection-clipboard clipboard
+set font "Noto Sans 10"
+
+set statusbar-basename true
+set adjust-open width
+set recolor true
+set smooth-scroll true
