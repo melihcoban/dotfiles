@@ -8,3 +8,14 @@
 - bash 
 - dunst (notification system)
 - zathura (pdf viewer)
+
+#### Dependencies
+- feh (image viewer)
+- scrot (screenshot)
+- pywal (theme / color generator)
+
+#### Required fonts
+- Noto Sans
+- Font Awesome 5 Free / Brand
+- Weather Icons
+- Material Icons
