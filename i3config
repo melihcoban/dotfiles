@@ -4,6 +4,7 @@ exec --no-startup-id wal -R
 exec --no-startup-id dunst
 exec --no-startup-id ~/.config/dunst/dunst.sh
 exec --no-startup-id compton -b
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 for_window [class="Yad"] floating enable
 for_window [class="^.*"] border pixel 0
 exec --no-startup-id /usr/lib/kdeconnectd
@@ -24,8 +25,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec ~/scripts/toggletouchpad.sh # toggle touchpad
@@ -47,22 +48,17 @@ for_window [class="^.*"] border pixel 0
 
 # Screenshot of the Desktop
 
-bindsym --release Print exec "scrot ~/Desktop/Screenshots/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Print exec "scrot ~/Screenshots/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
 
 # Desktop background
 
-#exec feh --bg-scale ~/Downloads/cyberpunk.jpg
+###exec feh --bg-scale ~/Downloads/wp.jpg
 #exec feh --bg-scale ~/Downloads/snow.jpg
-exec feh --bg-scale ~/Downloads/pond.jpg
+#exec feh --bg-scale ~/Downloads/pond.jpg
 
 # Start rofi
 
-bindsym $mod+r exec rofi -show run
-
-# Start polybar
-
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
+bindsym $mod+r exec rofi -show run -font 'Noto Sans 12'
 # Use Mouse+$mod to drag floating windows to their wanted position
 
 floating_modifier $mod
