@@ -1,17 +1,5 @@
 #!/bin/bash
 
-connection=$( iwconfig 2>&1 | grep off/any )
-
-if [ -z "$connection" ]
-then
-    ssid=$( iwgetid -r)
-    wifi=''
-else
-    ssid=''
-    wifi=''
-fi
-
-
 t=0
 
 toggle() {
@@ -23,25 +11,20 @@ trap "toggle" USR1
 
 while true; do
     if [ $t -eq 0 ]; then
-        if [[ -z "$connection" ]]
-        then
-            ssid=$( iwgetid -r)
-            wifi=''
+        wget -q --tries=10 --timeout=10 --spider http://google.com
+        if [[ $? -eq 0 ]]; then
+            ssid=$( iwgetid -r )
+            echo '' $ssid
         else
-            ssid=' '
-            wifi=' '
+            echo ""
         fi
-        echo $wifi $ssid
     else
-        if [[ -z "$connection" ]]
-        then
-            ssid=$( iwgetid -r)
-            wifi=''
+        wget -q --tries=10 --timeout=10 --spider http://google.com
+        if [[ $? -eq 0 ]]; then
+            echo ""
         else
-            ssid=' '
-            wifi=' '
+            echo ""
         fi
-        echo $wifi
     fi
     sleep 1 &
     wait

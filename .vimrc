@@ -1,63 +1,55 @@
-
+"General Customization
 set nocompatible
-syntax enable
-set encoding=utf-8
-set showcmd
 filetype plugin indent on
-set mouse=a
 
-""UI
-set number
-set showcmd
-set showmode
-
-""Whitespace
-set nowrap
-set tabstop=4 shiftwidth=4
-set expandtab
+" Indent Settings
 set autoindent
-set backspace=indent,eol,start
+set expandtab
+set softtabstop =4
+set shiftwidth =4
+set shiftround
 
-""Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
+"Show as much as possible of the last line
+set display =lastline
+set cursorline
+set report =0
+set synmaxcol =200
 
-call plug#begin() 
-Plug 'morhetz/gruvbox'
+" Turn on syntax highlighting
+syntax on
+
+" Show line numbers
+set number
+
+" Encoding
+set encoding=utf-8
+
+" Python Debugging
+" map <F5> :!clear;python %
+map <F5> :w<CR>:!clear;python %<CR>
+map <F6> :w<CR>:!clear;sqlitebrowser attendance.db<CR>
+map <F4> :w<CR>:!clear;sqlite3 attendance.db;SELECT * FROM attendanceTrack WHERE 1;<CR>
+" Plug-In Support
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/seoul256.vim'
+Plug 'https://github.com/joshdick/onedark.vim.git'
+Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
+Plug 'morhetz/gruvbox'
+Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
-" air-line
-let g:airline_powerline_fonts = 1
+" Ranger Key Mapping
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+let g:ranger_map_keys = 0
+nmap - :ranger<CR>
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+" Theme
 
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-set background=dark
 colorscheme gruvbox
